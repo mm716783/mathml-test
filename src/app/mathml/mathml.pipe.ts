@@ -10,7 +10,8 @@ export class MathmlPipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
 
   transform(value: string): SafeHtml {
-    const sanitizedString: string = DomPurify.sanitize(value,  {USE_PROFILES: {mathMl: true}});
+    const sanitizedString: string = DomPurify.sanitize(value,  {USE_PROFILES: {mathMl: true}, ADD_ATTR: ['my-select-attr']});
+    console.log(sanitizedString);
     return this.sanitizer.bypassSecurityTrustHtml(sanitizedString);
   }
 }
